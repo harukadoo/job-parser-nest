@@ -1,0 +1,1 @@
+//--------------- (Тут буде @InjectModel(...) та логіка Mongoose: findOne, create) --------------- //
