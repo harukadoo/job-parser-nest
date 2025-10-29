@@ -1,10 +1,26 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+import { ScheduleModule } from '@nestjs/schedule';
+
+import { ParserModule } from './parser/parser.module';
+import { TelegramModule } from './telegram/telegram.module';
+import { VacancyModule } from './vacancy/vacancy.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+    imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+            envFilePath: '.env',
+        }),
+
+        ScheduleModule.forRoot(),
+
+        ParserModule,
+        TelegramModule,
+        VacancyModule,
+    ],
+
+    providers: []
 })
+
 export class AppModule {}
